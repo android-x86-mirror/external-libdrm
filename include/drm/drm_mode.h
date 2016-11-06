@@ -119,6 +119,14 @@ extern "C" {
 #define DRM_MODE_LINK_STATUS_GOOD	0
 #define DRM_MODE_LINK_STATUS_BAD	1
 
+/* Rotation property bits */
+#define DRM_ROTATE_0	0
+#define DRM_ROTATE_90	1
+#define DRM_ROTATE_180	2
+#define DRM_ROTATE_270	3
+#define DRM_REFLECT_X	4
+#define DRM_REFLECT_Y	5
+
 struct drm_mode_modeinfo {
 	__u32 clock;
 	__u16 hdisplay;
