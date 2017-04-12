@@ -2863,7 +2863,7 @@ static int drmParsePciBusInfo(int maj, int min, drmPciBusInfoPtr info)
 {
 #ifdef __linux__
     char path[PATH_MAX + 1];
-    char data[128];
+    char data[128 + 1];
     char *str;
     int domain, bus, dev, func;
     int fd, ret;
@@ -2874,6 +2874,7 @@ static int drmParsePciBusInfo(int maj, int min, drmPciBusInfoPtr info)
         return -errno;
 
     ret = read(fd, data, sizeof(data));
+    data[128] = '\0';
     close(fd);
     if (ret < 0)
         return -errno;
@@ -2941,7 +2942,7 @@ static int drmGetMaxNodeName(void)
            MAX3(sizeof(DRM_PRIMARY_MINOR_NAME),
                 sizeof(DRM_CONTROL_MINOR_NAME),
                 sizeof(DRM_RENDER_MINOR_NAME)) +
-           3 /* lenght of the node number */;
+           3 /* length of the node number */;
 }
 
 static int drmParsePciDeviceInfo(const char *d_name,
